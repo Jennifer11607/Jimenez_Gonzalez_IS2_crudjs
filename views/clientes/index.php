@@ -50,6 +50,7 @@
                 <div class="col">
                     <button type="reset" id="btnLimpiar" class="btn btn-secondary w-100">Limpiar</button>
                 </div>
+                
             </div>
         </form>
     </div>

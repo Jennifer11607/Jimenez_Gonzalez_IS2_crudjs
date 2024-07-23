@@ -18,8 +18,13 @@ try {
                     break;
                 case '2':
                     $ejecucion = $cliente->modificar();
-                    $mensaje = "Guardado correctamente";
+                    $mensaje = "Modificado correctamente";
                     break;
+//crear funcion eliminar
+                case '3':
+                    $ejecucion = $cliente->eliminar();
+                    $mensaje = "Eliminado correctamente";
+                        break;
 
                 default:
                     $mensaje = "Tipo de operación no válida";

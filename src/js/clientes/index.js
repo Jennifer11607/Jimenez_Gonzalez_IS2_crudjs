@@ -65,8 +65,10 @@ const getClientes = async () => {
                     buttonModificar.textContent = 'Modificar'
                     buttonModificar.classList.add('btn', 'btn-warning', 'w-100')
                     buttonModificar.addEventListener('click', () => llenardatos(cliente) )
+                    //eliminar
                     buttonEliminar.textContent = 'Eliminar'
                     buttonEliminar.classList.add('btn', 'btn-danger', 'w-100')
+                    buttonEliminar.addEventListener('click', () => eliminar(cliente) )
 
                     celda6.appendChild(buttonModificar)
                     celda7.appendChild(buttonEliminar)
@@ -267,8 +269,89 @@ const modificar = async(e) => {
 
 }
 
+//funcion eliminar 
+
+const eliminar = async(e) => {
+    e.preventDefault();
+    btnModificar.disabled = true;
+
+    const url = '/Jimenez_Gonzalez_IS2_crudjs/controllers/clientes/index.php';
+    const formData = new FormData(formulario);
+    formData.append('tipo', 3);
+    const config = {
+        method: 'POST',
+        body: formData
+    };
+
+    try {
+        console.log('Enviando datos:', ...formData.entries());
+        const respuesta = await fetch(url, config);
+        const data = await respuesta.json();
+        console.log('Respuesta recibida:', data);
+        const { mensaje, codigo, detalle } = data;
+        if (respuesta.ok && codigo === 1) {
+            Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                icon: "success",
+                title: mensaje,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            }).fire();
+            formulario.reset()
+            getClientes();
+            btnBuscar.parentElement.style.display = ''
+            btnGuardar.parentElement.style.display = ''
+            btnLimpiar.parentElement.style.display = ''
+            btnModificar.parentElement.style.display = ''
+            btnCancelar.parentElement.style.display = 'none'
+            btnEliminar.appendChild.display = ''
+         
+        } else {
+            console.log('Error:', detalle);
+            Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                icon: "error",
+                title: 'Error al guardar',
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            }).fire();
+        }
+    } catch (error) {
+        console.log('Error de conexión:', error);
+        Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            icon: "error",
+            title: 'Error de conexión',
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).fire();
+    }
+    btnGuardar.disabled = false;
+
+
+}
 
 
 formulario.addEventListener('submit', guardarCliente)
 btnBuscar.addEventListener('click', getClientes)
 btnModificar.addEventListener('click', modificar)
+
+
