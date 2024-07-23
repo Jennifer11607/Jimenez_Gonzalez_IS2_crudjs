@@ -21,14 +21,14 @@
             <div class="row mb-3">
                 <div class="col">
                     <label for="cli_nit">Nit</label>
-                    <input type="number" name="cli_nit" id="cli_nit" class="form-control" required>
+                    <input type="text" name="cli_nit" id="cli_nit" class="form-control" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
                     <label for="cli_telefono">Telefono</label>
-                    <input type="number" name="cli_telefono" id="cli_telefono" class="form-control" required>
+                    <input type="text" name="cli_telefono" id="cli_telefono" class="form-control" required>
                 </div>
             </div>
             

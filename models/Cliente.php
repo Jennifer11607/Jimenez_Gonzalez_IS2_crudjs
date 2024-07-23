@@ -37,21 +37,21 @@ class Cliente extends Conexion
         }
 
         if ($this->cli_apellido != '') {
-            $sql .= " and cli_apellido = $this->cli_apellido ";
+            $sql .= " and cli_apellido like '%$this->cli_apellido%' ";
         }
 
         if ($this->cli_nit != '') {
-            $sql .= " and cli_nit = $this->cli_nit ";
+            $sql .= " and cli_nit = '%$this->cli_nit%' ";
         }
 
         if ($this->cli_telefono != '') {
-            $sql .= " and cli_telefono = $this->cli_telefono ";
+            $sql .= " and cli_telefono = '%$this->cli_telefono%' ";
         }
 
         if ($this->cli_id != null) {
             $sql .= " and cli_id = $this->cli_id ";
         }
-
+ 
         $resultado = self::servir($sql);
         return $resultado;
     }
