@@ -16,11 +16,12 @@ try {
                     $ejecucion = $cliente->guardar();
                     $mensaje = "Guardado correctamente";
                     break;
+                    //aqui se creo el caso modificar
                 case '2':
                     $ejecucion = $cliente->modificar();
                     $mensaje = "Modificado correctamente";
                     break;
-//crear funcion eliminar
+                    //crear caso  eliminar
                 case '3':
                     $ejecucion = $cliente->eliminar();
                     $mensaje = "Eliminado correctamente";
@@ -42,8 +43,8 @@ try {
             $cliente = new Cliente($_GET);
             $clientes = $cliente->buscar();
             echo json_encode($clientes);
-            
-            break;
+
+            break;            
 
         default:
             http_response_code(405);

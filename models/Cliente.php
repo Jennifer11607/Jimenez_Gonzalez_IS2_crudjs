@@ -41,11 +41,11 @@ class Cliente extends Conexion
         }
 
         if ($this->cli_nit != '') {
-            $sql .= " and cli_nit = '%$this->cli_nit%' ";
+            $sql .= " and cli_nit = '$this->cli_nit' ";
         }
 
         if ($this->cli_telefono != '') {
-            $sql .= " and cli_telefono = '%$this->cli_telefono%' ";
+            $sql .= " and cli_telefono = '$this->cli_telefono' ";
         }
 
         if ($this->cli_id != null) {
