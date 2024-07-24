@@ -143,6 +143,8 @@ const guardarCliente = async (e) => {
                     toast.onmouseleave = Swal.resumeTimer;
                 }
             }).fire();
+
+            //para ya no generar la alerta anterior 
             getClientes(alerta='no');
             formulario.reset();
         } else {
@@ -282,7 +284,7 @@ const modificar = async(e) => {
             }
         }).fire();
     }
-    btnGuardar.disabled = false;
+    btnModificar.disabled = false;
 
     const llenardatos = (cliente) => {
 
@@ -298,7 +300,7 @@ const modificar = async(e) => {
         btnCancelar.parentElement.style.display = ''
     
     }
- btnModificar.disabled = false;
+
 }
 
 
@@ -352,7 +354,7 @@ const eliminar = async (cliente) => {
                     icon: 'success',
                     title: 'Eliminado correctamente',
                     showConfirmButton: false,
-                    timer: 10000,
+                    timer: 5000,
                 });
                 formulario.reset()
                 getClientes(alerta='no');
